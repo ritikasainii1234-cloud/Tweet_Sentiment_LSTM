@@ -20,6 +20,8 @@ NumPy
 Pandas
 Matplotlib
 NLP Techniques
+
+
 🧠 Model Architecture
 Input Text
     ↓
@@ -36,6 +38,8 @@ RNN Layer
 Fully Connected Layer
     ↓
 Sentiment Prediction
+
+
 📊 Workflow
 Load Dataset
 Clean and Preprocess Text
@@ -45,9 +49,21 @@ Apply Padding
 Train RNN Model
 Evaluate Model Performance
 Predict Sentiment
+
+
 🎯 Applications
 Sentiment Analysis
 Social Media Monitoring
 Review Classification
 Opinion Mining
 Text Classification
+
+
+📚 Concepts Covered
+Natural Language Processing (NLP)
+Tokenization
+Vocabulary Building
+Word Embeddings
+Recurrent Neural Networks (RNN)
+Backpropagation Through Time (BPTT)
+Sentiment Analysis
