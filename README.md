@@ -1,69 +1,38 @@
-RNN for Sentiment Analysis using PyTorch
-📌 Project Overview
+# Tweet Sentiment Classification (RNN / LSTM, PyTorch)
 
-This project implements a Recurrent Neural Network (RNN) using PyTorch for sentiment analysis on text data. The model processes sequences of words and predicts the sentiment of a given text as positive, negative, or neutral depending on the dataset labels.
+3-class sentiment classification (negative / neutral / positive) for tweets, built during
+my AI/ML internship at the Open Source Intelligence Lab, IIT Guwahati.
 
-The project demonstrates how sequential text data can be processed using RNNs to capture contextual information and perform text classification.
+## Notebooks
+- `RNN_for_SentimentAnalysis.ipynb`: original internship implementation
+- `Tweet_Sentiment_LSTM.ipynb`: extended version with a bidirectional LSTM, full
+  evaluation and error analysis
 
-🚀 Features
-Text Preprocessing
-Tokenization
-Vocabulary Building
-Sequence Padding
-RNN-based Text Classification
-Sentiment Prediction
-PyTorch Implementation
-🛠️ Technologies Used
-Python
-PyTorch
-NumPy
-Pandas
-Matplotlib
-NLP Techniques
+## Dataset
+TweetEval (sentiment), loaded via Hugging Face `datasets`. Test set: 12,284 tweets.
 
+## Model (LSTM notebook)
+- Text cleaning, vocabulary (min frequency 2), padding to 40 tokens
+- Embedding (128) → Bidirectional LSTM (128) → Dropout (0.3) → Linear
+- Adam (lr 1e-3), 8 epochs, best checkpoint chosen by validation accuracy
 
-🧠 Model Architecture
-Input Text
-    ↓
-Tokenization
-    ↓
-Vocabulary Encoding
-    ↓
-Padding
-    ↓
-Embedding Layer
-    ↓
-RNN Layer
-    ↓
-Fully Connected Layer
-    ↓
-Sentiment Prediction
+## Results (test set)
+| Class | Precision | Recall | F1 |
+|---|---|---|---|
+| Negative | 0.581 | 0.474 | 0.522 |
+| Neutral | 0.601 | 0.628 | 0.614 |
+| Positive | 0.515 | 0.616 | 0.561 |
 
+**Accuracy: 57.6% | Macro F1: 0.566**
 
-📊 Workflow
-Load Dataset
-Clean and Preprocess Text
-Build Vocabulary
-Convert Text to Numerical Sequences
-Apply Padding
-Train RNN Model
-Evaluate Model Performance
-Predict Sentiment
+## Error analysis
+5,211 of 12,284 tweets were misclassified. About 90% of the errors involved the neutral
+class; the biggest confusion was negative predicted as neutral (1,733 tweets). Sampled
+errors showed sarcasm, implicit negativity in headline-style tweets, mixed sentiment and
+opinion-less tweets (stock tickers, name lists) as common patterns.
 
+## Possible improvements
+Pretrained embeddings (GloVe), keeping emojis, class weights, transformer fine-tuning.
 
-🎯 Applications
-Sentiment Analysis
-Social Media Monitoring
-Review Classification
-Opinion Mining
-Text Classification
-
-
-📚 Concepts Covered
-Natural Language Processing (NLP)
-Tokenization
-Vocabulary Building
-Word Embeddings
-Recurrent Neural Networks (RNN)
-Backpropagation Through Time (BPTT)
-Sentiment Analysis
+## Run it
+Open a notebook in Google Colab (T4 GPU) and run all cells.
