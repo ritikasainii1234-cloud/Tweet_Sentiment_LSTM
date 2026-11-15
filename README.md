@@ -1,22 +1,25 @@
 # Tweet Sentiment Classification (RNN / LSTM, PyTorch)
 
-3-class sentiment classification (negative / neutral / positive) for tweets, built during
-my AI/ML internship at the Open Source Intelligence Lab, IIT Guwahati.
+Sentiment classification with recurrent neural networks in PyTorch, built during my AI/ML
+internship at the Open Source Intelligence Lab, IIT Guwahati.
 
 ## Notebooks
-- `RNN_for_SentimentAnalysis.ipynb`: original internship implementation
-- `Tweet_Sentiment_LSTM.ipynb`: extended version with a bidirectional LSTM, full
-  evaluation and error analysis
+- `RNN_for_SentimentAnalysis.ipynb`: baseline RNN on IMDB movie reviews (binary, TF-IDF
+  features), 85.7% test accuracy
+- `Tweet_Sentiment_LSTM.ipynb`: bidirectional LSTM on tweets (TweetEval, 3-class) with
+  full evaluation and error analysis
 
-## Dataset
+## Tweet Sentiment LSTM
+
+### Dataset
 TweetEval (sentiment), loaded via Hugging Face `datasets`. Test set: 12,284 tweets.
 
-## Model (LSTM notebook)
+### Model
 - Text cleaning, vocabulary (min frequency 2), padding to 40 tokens
 - Embedding (128) → Bidirectional LSTM (128) → Dropout (0.3) → Linear
 - Adam (lr 1e-3), 8 epochs, best checkpoint chosen by validation accuracy
 
-## Results (test set)
+### Results (test set)
 | Class | Precision | Recall | F1 |
 |---|---|---|---|
 | Negative | 0.581 | 0.474 | 0.522 |
@@ -25,13 +28,13 @@ TweetEval (sentiment), loaded via Hugging Face `datasets`. Test set: 12,284 twee
 
 **Accuracy: 57.6% | Macro F1: 0.566**
 
-## Error analysis
+### Error analysis
 5,211 of 12,284 tweets were misclassified. About 90% of the errors involved the neutral
 class; the biggest confusion was negative predicted as neutral (1,733 tweets). Sampled
 errors showed sarcasm, implicit negativity in headline-style tweets, mixed sentiment and
 opinion-less tweets (stock tickers, name lists) as common patterns.
 
-## Possible improvements
+### Possible improvements
 Pretrained embeddings (GloVe), keeping emojis, class weights, transformer fine-tuning.
 
 ## Run it
